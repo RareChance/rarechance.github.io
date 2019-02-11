@@ -1,37 +1,64 @@
-## Welcome to GitHub Pages
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>That is unbelievable</title>
+</head>
+<body>
+Input:<input type="text" id="message"><br>
+Key:<input type="text" id="key"><br>
+<button id="encrypt" onclick="otpEnc()">Encrypt</button><br>
+<button id="decrypt" onclick="otpDec()">Decrypt</button><br>
+<hr>
+Output:<p id="result"></p>
 
-You can use the [editor on GitHub](https://github.com/RareChance/rarechance.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+<script>
+    function otpEnc() {
+        var message = document.getElementById("message").value;
+        var key = document.getElementById("key").value;
+        var charArray1 = message.toUpperCase().split("");
+        var charArray2 = key.toUpperCase().split("");
+        var res = "";
+        var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+            "T", "U", "V", "W", "X", "Y", "Z"];
+        for (j = 0; j < message.length; j++) {
+            if (!charArray1[j].match(/[a-z]/i)) {
+                res += charArray1[j];
+                continue;
+            }
+            var a = alphabet.indexOf(charArray1[j]);
+            var b = alphabet.indexOf(charArray2[j]);
+            var x = a + b;
+            if (x > 25) {
+                x = x % 26;
+            }
+            res += alphabet[x]
+        }
+        document.getElementById("result").innerHTML = res;
+    }
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RareChance/rarechance.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+    function otpDec() {
+        var message = document.getElementById("message").value;
+        var key = document.getElementById("key").value;
+        var charArray1 = message.toUpperCase().split("");
+        var charArray2 = key.toUpperCase().split("");
+        var res = "";
+        var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+            "T", "U", "V", "W", "X", "Y", "Z"];
+        for (j = 0; j < message.length; j++) {
+            if (!charArray1[j].match(/[a-z]/i)) {
+                res += charArray1[j];
+                continue;
+            }
+            var a = alphabet.indexOf(charArray1[j]);
+            var b = alphabet.indexOf(charArray2[j]);
+            var x = a - b;
+            if (x < 0) {
+                x = x + 26;
+            }
+            res += alphabet[x]
+        }
+        document.getElementById("result").innerHTML = res;
+    }
+</script>
+</body>
+</html>
