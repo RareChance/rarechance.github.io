@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--This just sets up everything for the web page, as well as controlling the width of the device,
+     on which the page was opened.-->
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>That is unbelievable</title>
+    <title>TIME TO ENCRYPT</title>
 </head>
 <body>
+<!--Main body where I set up all input/output options.-->
 <img src="pic.png" alt="Yo" width="200" height="200"><br>
 Input:<br><input type="text" id="message"><br>
 Key:<br><input type="text" id="key"><br>
@@ -12,8 +15,9 @@ Key:<br><input type="text" id="key"><br>
 <button id="decrypt" onclick="otpDec()">OTP-Decrypt</button><br>
 <hr>
 <p>Output:</p><p id="result"></p>
-
+<!--In the script I define functions, which are executed in the body section.-->
 <script>
+    /*OTP encryption using input and key.*/
     function otpEnc() {
         var message = document.getElementById("message").value;
         var key = document.getElementById("key").value;
@@ -37,7 +41,7 @@ Key:<br><input type="text" id="key"><br>
         }
         document.getElementById("result").innerHTML = res;
     }
-
+    /*OTP decryption using input and key.*/
     function otpDec() {
         var message = document.getElementById("message").value;
         var key = document.getElementById("key").value;
